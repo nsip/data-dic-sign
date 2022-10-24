@@ -36,8 +36,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { loginOK, loginUser, postLogin, postSignUp, postEmailVerify, } from "../share/share";
-import { IP_VIEW } from "../share/fetch"
+import { loginToken, postLogin, postSignUp, postEmailVerify, } from "../share/share";
+import { IP_VIEW } from "../share/share"
 
 export default defineComponent({
     name: "SignPage",
@@ -51,16 +51,15 @@ export default defineComponent({
         let confirmReg = ref("");
         let codeReg = ref("");
 
+        const viewSite = async () => {
+            location.replace(`${IP_VIEW}?auth=${loginToken.value}`)
+        }
+
         const doLogin = async () => {
             const ok = await postLogin(unameLogin.value, pwdLogin.value);
             if (ok) {
                 // alert('login successfully')
-                loginOK.value = true;
-                loginUser.value = unameLogin.value;
-
-                ///////////////////////////////////
-
-                location.replace(IP_VIEW)
+                viewSite()
             }
         };
 
@@ -104,7 +103,6 @@ export default defineComponent({
             pwdReg,
             confirmReg,
             codeReg,
-            loginOK,
 
             doLogin,
             doRegister,

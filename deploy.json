@@ -1,0 +1,35 @@
+{
+    "IpRepl": [
+        {
+            "Enable": true,
+            "ToPub": true,
+            "ToLoc": false,
+            "ToIP": "127.0.0.1",
+            "_ToIP": "change current 'localhost' to which IP?",
+            "NewPort": 1323,
+            "OnlyFirst": false,
+            "Files": [
+                "./src/share/fetch.ts"
+            ]
+        },
+        {
+            "Enable": true,
+            "ToPub": true,
+            "ToLoc": false,
+            "ToIP": "127.0.0.1",
+            "_ToIP": "change current 'localhost' to which IP?",
+            "NewPort": 3000,
+            "OnlyFirst": false,
+            "Files": [
+                "./src/share/share.ts"
+            ]
+        }
+    ],
+    "SymbolRepl": [
+        {
+            "Enable": true,
+            "OnlyForCmt": true,
+            "Files": []
+        }
+    ]
+}

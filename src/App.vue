@@ -1,5 +1,5 @@
 <template>
-    <SignPage />
+    <SignPage v-if="disp" />
 </template>
 
 <script lang="ts">
@@ -14,6 +14,7 @@ export default defineComponent({
         SignPage,
     },
     setup() {
+
         let Width = window.innerWidth + "px";
         let Height = window.innerHeight + "px";
 
@@ -30,7 +31,7 @@ export default defineComponent({
             // test backend api available
             disp.value = await ping();
             if (!disp.value) {
-                alert("backed api service is not available");
+                alert("backend api service is not available");
             }
 
             // listen browser size change
