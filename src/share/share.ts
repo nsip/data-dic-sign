@@ -1,8 +1,6 @@
 import { ref } from "vue";
 import { fetchBodyForm, mEmpty } from "./fetch";
 
-export const IP_VIEW = `http://127.0.0.1:3000/`;
-
 export const loginOK = ref(false);
 export const loginUser = ref("");
 export const loginToken = ref(""); // without 'Bearer '

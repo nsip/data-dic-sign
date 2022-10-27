@@ -37,7 +37,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { loginToken, postLogin, postSignUp, postEmailVerify, } from "../share/share";
-import { IP_VIEW } from "../share/share"
+import { IP_VIEW } from "../share/ip";
 
 export default defineComponent({
     name: "SignPage",
