@@ -34,85 +34,64 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+
+import { ref } from "vue";
 import { loginToken, postLogin, postSignUp, postEmailVerify, } from "../share/share";
 import { IP_VIEW } from "../share/ip";
 
-export default defineComponent({
-    name: "SignPage",
-    setup() {
-        let signPage = ref("in"); // page
-        let unameLogin = ref("");
-        let pwdLogin = ref("");
-        let unameReg = ref("");
-        let emailReg = ref("");
-        let pwdReg = ref("");
-        let confirmReg = ref("");
-        let codeReg = ref("");
+let signPage = ref("in"); // page
+let unameLogin = ref("");
+let pwdLogin = ref("");
+let unameReg = ref("");
+let emailReg = ref("");
+let pwdReg = ref("");
+let confirmReg = ref("");
+let codeReg = ref("");
 
-        const viewSite = async () => {
-            location.replace(`${IP_VIEW}?auth=${loginToken.value}`)
-        }
+const viewSite = async () => {
+    location.replace(`${IP_VIEW}?auth=${loginToken.value}`)
+}
 
-        const doLogin = async () => {
-            const ok = await postLogin(unameLogin.value, pwdLogin.value);
-            if (ok) {
-                // alert('login successfully')
-                viewSite()
-            }
-        };
+const doLogin = async () => {
+    const ok = await postLogin(unameLogin.value, pwdLogin.value);
+    if (ok) {
+        // alert('login successfully')
+        viewSite()
+    }
+};
 
-        const doRegister = async () => {
-            if (pwdReg.value != confirmReg.value) {
-                alert("password confirmation error");
-                confirmReg.value = "";
-                return;
-            }
-            const ok = await postSignUp(unameReg.value, emailReg.value, pwdReg.value);
-            if (ok) {
-                alert(`verification code sent to your email ${emailReg.value}`);
-                emailVerifyPage();
-            }
-        };
+const doRegister = async () => {
+    if (pwdReg.value != confirmReg.value) {
+        alert("password confirmation error");
+        confirmReg.value = "";
+        return;
+    }
+    const ok = await postSignUp(unameReg.value, emailReg.value, pwdReg.value);
+    if (ok) {
+        alert(`verification code sent to your email ${emailReg.value}`);
+        emailVerifyPage();
+    }
+};
 
-        const doEmailVerification = async () => {
-            const ok = await postEmailVerify(unameReg.value, codeReg.value);
-            if (ok) {
-                alert("email verified, please login");
-                signInPage();
-            }
-        };
+const doEmailVerification = async () => {
+    const ok = await postEmailVerify(unameReg.value, codeReg.value);
+    if (ok) {
+        alert("email verified, please login");
+        signInPage();
+    }
+};
 
-        const signUpPage = () => {
-            signPage.value = "up";
-        };
-        const signInPage = () => {
-            signPage.value = "in";
-        };
-        const emailVerifyPage = () => {
-            signPage.value = "verify";
-        };
+const signUpPage = () => {
+    signPage.value = "up";
+};
+const signInPage = () => {
+    signPage.value = "in";
+};
+const emailVerifyPage = () => {
+    signPage.value = "verify";
+};
 
-        return {
-            signPage,
-            unameLogin,
-            pwdLogin,
-            unameReg,
-            emailReg,
-            pwdReg,
-            confirmReg,
-            codeReg,
-
-            doLogin,
-            doRegister,
-            doEmailVerification,
-            signUpPage,
-            signInPage,
-            emailVerifyPage,
-        };
-    },
-});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

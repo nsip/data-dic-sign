@@ -2,50 +2,35 @@
     <SignPage v-if="disp" />
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
-import { loginOK } from "./share/share";
+<script setup lang="ts">
+
+import { onMounted, ref } from "vue";
 import SignPage from "./components/SignPage.vue";
 import { ping } from "./share/ping";
 
-export default defineComponent({
-    name: "App",
-    components: {
-        SignPage,
-    },
-    setup() {
+let Width = window.innerWidth + "px";
+let Height = window.innerHeight + "px";
 
-        let Width = window.innerWidth + "px";
-        let Height = window.innerHeight + "px";
+const onResize = () => {
+    Width = window.innerWidth + "px";
+    Height = window.innerHeight + "px";
+    console.log("Width:", Width);
+    console.log("Height:", Height);
+};
 
-        const onResize = () => {
-            Width = window.innerWidth + "px";
-            Height = window.innerHeight + "px";
-            console.log("Width:", Width);
-            console.log("Height:", Height);
-        };
+let disp = ref(false);
 
-        let disp = ref(false);
+onMounted(async () => {
+    // test backend api available
+    disp.value = await ping();
+    if (!disp.value) {
+        alert("backend api service is not available");
+    }
 
-        onMounted(async () => {
-            // test backend api available
-            disp.value = await ping();
-            if (!disp.value) {
-                alert("backend api service is not available");
-            }
-
-            // listen browser size change
-            window.addEventListener("resize", onResize);
-        });
-
-        return {
-            Width,
-            Height,
-            loginOK,
-            disp,
-        };
-    },
+    // listen browser size change
+    window.addEventListener("resize", onResize);
 });
+
 </script>
 
 <style>
