@@ -1,8 +1,9 @@
 <template>
     <div class="login-page">
+
         <div v-if="signPage == 'in'">
             <h1>Sign In</h1>
-            <input class="textbox" v-model="unameLogin" placeholder="User Name" required />
+            <input class="textbox" v-model="unameLogin" type="text" placeholder="User Name" autofocus required />
             <input class="textbox" v-model="pwdLogin" type="password" placeholder="Password" required />
             <button class="btn" @click="doLogin()">Sign In</button>
             <p>
@@ -13,7 +14,7 @@
 
         <div v-if="signPage == 'up'">
             <h1>Sign Up</h1>
-            <input class="textbox" v-model="unameReg" placeholder="User Name" required />
+            <input class="textbox" v-model="unameReg" type="text" placeholder="User Name" required />
             <input class="textbox" v-model="emailReg" type="email" placeholder="Email" required />
             <input class="textbox" v-model="pwdReg" type="password" placeholder="Password" required />
             <input class="textbox" v-model="confirmReg" type="password" placeholder="Confirm Password" required />
@@ -27,18 +28,19 @@
         <div v-if="signPage == 'verify'">
             <h1>Email Verification</h1>
             <input class="textbox" v-model="unameReg" required readonly />
-            <input class="textbox" v-model="codeReg" placeholder="Verification Code In Your Email" required />
+            <input class="textbox" v-model="codeReg" type="text" placeholder="Verification Code In Your Email" required />
             <button class="btn" @click="doEmailVerification()">Verify</button>
             <button class="btn" @click="doRegister()">Resent</button>
         </div>
+
     </div>
 </template>
 
 <script setup lang="ts">
 
-import { ref } from "vue";
-import { loginToken, postLogin, postSignUp, postEmailVerify, } from "../share/share";
-import { IP_VIEW } from "../share/ip";
+import { ref, onMounted } from "vue";
+import { loginToken, postLogin, postSignUp, postEmailVerify, } from "@/share/share";
+import { IP_VIEW } from "@/share/ip";
 
 let signPage = ref("in"); // page
 let unameLogin = ref("");
@@ -48,6 +50,10 @@ let emailReg = ref("");
 let pwdReg = ref("");
 let confirmReg = ref("");
 let codeReg = ref("");
+
+onMounted(async () => {
+    
+})
 
 const viewSite = async () => {
     location.replace(`${IP_VIEW}?auth=${loginToken.value}`)
@@ -82,15 +88,9 @@ const doEmailVerification = async () => {
     }
 };
 
-const signUpPage = () => {
-    signPage.value = "up";
-};
-const signInPage = () => {
-    signPage.value = "in";
-};
-const emailVerifyPage = () => {
-    signPage.value = "verify";
-};
+const signUpPage = () => { signPage.value = "up"; };
+const signInPage = () => { signPage.value = "in"; };
+const emailVerifyPage = () => { signPage.value = "verify"; };
 
 </script>
 

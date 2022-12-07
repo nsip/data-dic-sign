@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { fetchBodyForm, mEmpty } from "./fetch";
+import { fetchBodyForm, mEmpty } from "@/share/fetch";
 
 export const loginOK = ref(false);
 export const loginUser = ref("");
