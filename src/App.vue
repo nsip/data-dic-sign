@@ -4,7 +4,6 @@
 
 <script setup lang="ts">
 
-import { onMounted, ref } from "vue";
 import SignPage from "@/components/SignPage.vue";
 import { ping } from "@/share/ping";
 

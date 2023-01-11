@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 
-import { ref, onMounted } from "vue";
 import { loginToken, postLogin, postSignUp, postEmailVerify, } from "@/share/share";
 import { IP_VIEW } from "@/share/ip";
 

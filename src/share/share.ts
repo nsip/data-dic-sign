@@ -1,4 +1,3 @@
-import { ref } from "vue";
 import { fetchBodyForm, mEmpty } from "@/share/fetch";
 
 export const loginOK = ref(false);
