@@ -6,8 +6,8 @@ export const loginToken = ref(""); // without 'Bearer '
 
 export const postLogin = async (uname: string, pwd: string) => {
     const mForm = new Map<string, any>([
-        ["uname", uname],
-        ["pwd", pwd],
+        ["uname", uname.trim()],
+        ["pwd", pwd.trim()],
     ]);
     const rt = (await fetchBodyForm(
         `/api/user/pub/sign-in`,
@@ -27,9 +27,9 @@ export const postLogin = async (uname: string, pwd: string) => {
 
 export const postSignUp = async (uname: string, email: string, pwd: string) => {
     const mForm = new Map<string, any>([
-        ["uname", uname],
-        ["email", email],
-        ["pwd", pwd],
+        ["uname", uname.trim()],
+        ["email", email.trim()],
+        ["pwd", pwd.trim()],
     ]);
     const rt = (await fetchBodyForm(
         `/api/user/pub/sign-up`,
@@ -47,8 +47,8 @@ export const postSignUp = async (uname: string, email: string, pwd: string) => {
 
 export const postEmailVerify = async (uname: string, code: string) => {
     const mForm = new Map<string, any>([
-        ["uname", uname],
-        ["code", code],
+        ["uname", uname.trim()],
+        ["code", code.trim()],
     ]);
     const rt = (await fetchBodyForm(
         `/api/user/pub/verify-email`,
