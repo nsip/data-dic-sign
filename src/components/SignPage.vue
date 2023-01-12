@@ -5,9 +5,8 @@
             <h1>Sign In</h1>
             <input class="textbox" v-model="unameLogin" type="text" placeholder="User Name" autofocus required />
             <input class="textbox" v-model="pwdLogin" type="password" placeholder="Password" required />
-            <button class="btn" @click="doLogin()">Sign In</button>
-            <p>
-                Don't have an account?
+            <button class="btn0" @click="doLogin()">Sign In</button>
+            <p> Don't have an account?
                 <a href="#" @click="signUpPage()">Sign up here</a>
             </p>
         </div>
@@ -18,9 +17,8 @@
             <input class="textbox" v-model="emailReg" type="email" placeholder="Email" required />
             <input class="textbox" v-model="pwdReg" type="password" placeholder="Password" required />
             <input class="textbox" v-model="confirmReg" type="password" placeholder="Confirm Password" required />
-            <button class="btn" @click="doRegister()">Sign Up</button>
-            <p>
-                Already have an account?
+            <button class="btn0" @click="doRegister()">Sign Up</button>
+            <p> Already have an account?
                 <a href="#" @click="signInPage()">Sign in here</a>
             </p>
         </div>
@@ -29,8 +27,8 @@
             <h1>Email Verification</h1>
             <input class="textbox" v-model="unameReg" required readonly />
             <input class="textbox" v-model="codeReg" type="text" placeholder="Verification Code In Your Email" required />
-            <button class="btn" @click="doEmailVerification()">Verify</button>
-            <button class="btn" @click="doRegister()">Resent</button>
+            <button class="btn0" @click="doEmailVerification()">Verify</button>
+            <button class="btn1" @click="doRegister()">Resent</button>
         </div>
 
     </div>
@@ -51,7 +49,7 @@ let confirmReg = ref("");
 let codeReg = ref("");
 
 onMounted(async () => {
-    
+
 })
 
 const viewSite = async () => {
@@ -104,16 +102,25 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: white;
+    opacity: 0.95;
+    border-radius: 25px;
 }
 
 .textbox {
     margin-bottom: 2%;
-    width: 100%;
+    width: 90%;
 }
 
-.btn {
+.btn0 {
     float: right;
-    margin-left: 2%;
-    margin-right: -1%;
+    margin-right: 4%;
+    margin-bottom: 2%;
+}
+
+.btn1 {
+    float: right;
+    margin-right: 2%;
+    margin-bottom: 2%;
 }
 </style>

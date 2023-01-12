@@ -41,4 +41,11 @@ onMounted(async () => {
     color: #2c3e50;
     margin-top: 10px;
 }
+
+body {
+    background-image: url('assets/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
 </style>
